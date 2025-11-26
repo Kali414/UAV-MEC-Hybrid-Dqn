@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, jsonify
 import numpy as np
 import tensorflow as tf
 
+import os
+
 from asgp import AGSPOptimizer
 from hybrid_agent import HybridAgent
 from trust_dqn import TrustAwareDQN
@@ -88,7 +90,9 @@ def result():
 
         # ------------------- Load Model ------------------------
         dqn = TrustAwareDQN(input_dim=input_dim, n_actions=n_actions)
-        model_path = r"C:\Users\HP\OneDrive\Desktop\Product_lab\trust_dqn_model.keras"
+        
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(BASE_DIR, "models", "trust_dqn_model.keras")
 
         try:
             dqn.net = tf.keras.models.load_model(model_path, compile=True)
