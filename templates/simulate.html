@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAV-MEC Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='simulate.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">UAV-MEC Simulator</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/simulate" class="nav-link active">Run Simulation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="simulation-container">
+        <div class="container">
+            <h1><i class="fas fa-cogs"></i> Simulation Parameters</h1>
+            
+            <!-- Simulation Parameters Form -->
+            <form id="simulationForm" class="simulation-form">
+
+                <!-- SECTION TITLE -->
+                <h2 style="color:#4361ee; margin-bottom:15px;">
+                    Configure Simulation Environment
+                </h2>
+
+                <!-- GENERAL PARAMETERS -->
+                <h3 style="margin:15px 0 5px;">General Setup</h3>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="uavCount">Number of UAVs </label>
+                        <input type="number" id="uavCount" min="1" max="10" value="3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userCount">Number of Users </label>
+                        <input type="number" id="userCount" min="1" max="200" value="20" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bandwidth">Bandwidth (Mbps) </label>
+                        <input type="number" id="bandwidth" min="10" max="2000" value="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskSize">Task Size (MB) </label>
+                        <input type="number" id="taskSize" min="1" max="500" value="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cycles">Cycles Required (Millions) </label>
+                        <input type="number" id="cycles" min="1" max="1000" value="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="areaSize">Simulation Area Size (m) </label>
+                        <input type="number"
+                            id="areaSize"
+                            min="100"
+                            max="10000000"
+                            value="1000"
+                            placeholder="e.g., 1000"
+                            required>
+                        <small style="color:#6b7280;">
+                            Higher value means a wider environment where UAV travel increases delay.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uavRange">UAV Range (m) 📡🛩</label>
+                        <input type="number"
+                               id="uavRange"
+                               min="50"
+                               max="5000"
+                               value="500"
+                               placeholder="e.g., 500"
+                               required>
+                        <small style="color:#6b7280;">
+                            Defines how far users can connect to the UAV.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="simSteps">Simulation Steps </label>
+                        <input type="number"
+                               id="simSteps"
+                               min="50"
+                               max="2000"
+                               value="200"
+                               required>
+                        <small style="color:#6b7280;">
+                            Total time steps to run each algorithm.
+                        </small>
+                    </div>
+
+                </div>
+
+                <!-- COMPUTATIONAL POWER -->
+                <h3 style="margin:15px 0 5px;">Computational Power (GHz Input)</h3>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="userCPU">User CPU Frequency (GHz)</label>
+                        <input type="number"
+                            id="userCPU"
+                            min="0.5"
+                            max="5"
+                            step="0.1"
+                            value="1.8"
+                            placeholder="e.g., 1.8"
+                            required>
+                        <small style="color:#6b7280;">(Example: 1.8 GHz → smartphone processor)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uavCPU">UAV CPU Frequency (GHz) 🛩</label>
+                        <input type="number"
+                            id="uavCPU"
+                            min="1"
+                            max="10"
+                            step="0.5"
+                            value="4"
+                            placeholder="e.g., 4.0"
+                            required>
+                        <small style="color:#6b7280;">(Mid–High performance flight computer)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cloudCPU">Cloud Server CPU (GHz) </label>
+                        <input type="number"
+                            id="cloudCPU"
+                            min="5"
+                            max="50"
+                            step="1"
+                            value="20"
+                            placeholder="e.g., 20"
+                            required>
+                        <small style="color:#6b7280;">(Cloud cluster or data center capability)</small>
+                    </div>
+
+                </div>
+
+                <!-- ENERGY SETTINGS -->
+                <h3 style="margin:15px 0 5px;">Energy Configuration</h3>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="kappaMU">Mobile Energy Efficiency (κμ)</label>
+                        <input type="number" id="kappaMU" step="1e-30" value="1e-28" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kappaUAV">UAV Energy Efficiency (κ UAV)</label>
+                        <input type="number" id="kappaUAV" step="1e-30" value="5e-28" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uavBattery">UAV Battery Capacity (J)</label>
+                        <input type="number" id="uavBattery" min="200" max="1000000" value="1000" required>
+                    </div>
+                </div>
+
+                <!-- RUN BUTTON -->
+                <button type="submit" class="cta-button" id="runSimulation">
+                     Run Simulation
+                </button>
+            </form>
+
+            <!-- ABBREVIATION EXPLANATION SECTION -->
+            <div class="environment-section" style="margin-top:25px;">
+                <h3>Parameter Meaning & Abbreviations</h3>
+                <ul style="line-height:1.8;">
+                    <li><strong>UAV</strong>: Unmanned Aerial Vehicle (airborne edge server)</li>
+                    <li><strong>CPU (GHz)</strong>: Computation speed (more GHz = faster processing)</li>
+                    <li><strong>κ (Kappa)</strong>: Energy efficiency constant (lower = better battery life)</li>
+                    <li><strong>Task Size (MB)</strong>: Input data processed locally or offloaded</li>
+                    <li><strong>Cycles</strong>: Required processing effort for completing task</li>
+                    <li><strong>Bandwidth</strong>: Speed of wireless communication link</li>
+                    <li><strong>Battery (J)</strong>: UAV energy storage capacity in Joules</li>
+                </ul>
+            </div>
+
+            <!-- Simulation Results (initially hidden) -->
+            <div id="simulationResults" style="display: none;">
+                <h2><i class="fas fa-chart-line"></i> Simulation Results - Hybrid Model</h2>
+                
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="successRate">0%</div>
+                        <div class="metric-label">Success Rate</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="avgLatency">0ms</div>
+                        <div class="metric-label">Avg. Latency</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="energyUsage">0W</div>
+                        <div class="metric-label">Energy Usage</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="qoeScore">0</div>
+                        <div class="metric-label">QoE Score</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 1 -->
+<div class="chart-row">
+
+    <!-- Latency Bar Chart -->
+    <div class="chart-container">
+        <h3>Latency (ms)</h3>
+        <canvas id="latencyChart"></canvas>
+    </div>
+
+    <!-- Energy Bar Chart -->
+    <div class="chart-container">
+        <h3>Energy Consumption (J)</h3>
+        <canvas id="energyChart"></canvas>
+    </div>
+</div>
+
+<!-- Charts Row 2 -->
+<div class="chart-row">
+
+    <!-- QoE Bar Chart -->
+    <div class="chart-container">
+        <h3>QoE Comparison</h3>
+        <canvas id="qoeChart"></canvas>
+    </div>
+</div>
+
+                <!-- UAV Environment Visualization -->
+                <div class="environment-section">
+                    <button onclick="resetView()" class="resetZoomBtn">🔄 Reset View</button>
+
+                    <h3>UAV Environment</h3>
+                    <div class="environment-canvas" id="uavEnvironment">
+                        <!-- This will be populated by the JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>Advanced simulation platform for UAV-assisted Mobile Edge Computing task offloading scenarios.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 UAV-MEC Offloading Simulator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Chart.js for visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='simulate.js') }}"></script>
+</body>
+</html>

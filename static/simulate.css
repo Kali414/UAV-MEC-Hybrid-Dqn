@@ -1,0 +1,349 @@
+/* ===============================
+   Root Theme Variables
+================================*/
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+
+    --border-color: #e5e7eb;
+    --background: #f9fafb;
+    --card-bg: #ffffff;
+
+    --shadow: 0 2px 6px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+
+    --transition: all 0.3s ease;
+}
+
+/* ===============================
+   Reset & Body
+================================*/
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    color: var(--text-color);
+}
+
+/* ===============================
+   Layout Container
+================================*/
+.container {
+    max-width: 1250px;
+    margin:auto;
+    padding:0 20px;
+}
+
+/* ===============================
+   Navbar
+================================*/
+.navbar {
+    background:white;
+    padding:1rem 0;
+    position: sticky;
+    top:0;
+    z-index:1000;
+    box-shadow: var(--shadow);
+}
+
+.navbar .container {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo {
+    font-size:1.6rem;
+    font-weight:700;
+    color: var(--primary-color);
+    text-decoration:none;
+}
+
+.nav-links {
+    display:flex;
+    gap:1.8rem;
+}
+
+.nav-link {
+    text-decoration:none;
+    font-weight:500;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+
+/* ===============================
+   Simulator Input Card
+================================*/
+.simulation-form {
+    margin-top:25px;
+    background:white;
+    padding:2rem;
+    border-radius:12px;
+    box-shadow: var(--shadow);
+}
+
+.form-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap:1.4rem;
+}
+
+.form-group label {
+    font-weight:500;
+    margin-bottom:6px;
+    display:block;
+}
+
+.form-group input {
+    width:100%;
+    padding:10px;
+    border:1px solid var(--border-color);
+    border-radius:8px;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow:0 0 0 3px rgba(67,97,238,0.15);
+    outline:none;
+}
+
+/* ===============================
+   Submit Button
+================================*/
+.cta-button {
+    margin-top:1.8rem;
+    padding:12px 28px;
+    background: var(--primary-color);
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    transition: var(--transition);
+    font-weight:600;
+}
+
+.cta-button:hover {
+    background: var(--secondary-color);
+    transform:translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===============================
+   Metrics Summary Cards
+================================*/
+.metrics-grid {
+    margin-top:25px;
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+}
+
+.metric-card {
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.metric-card:hover {
+    transform:translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.metric-value {
+    font-size:2rem;
+    font-weight:700;
+    color: var(--primary-color);
+}
+
+/* ===============================
+   Chart Layout (Fixed Size)
+================================*/
+.chart-row {
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:22px;
+}
+
+.chart-container {
+    background:white;
+    border-radius:12px;
+    box-shadow: var(--shadow);
+    width:460px;
+    height:350px;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+}
+
+.chart-container canvas {
+    flex:1;
+    width:100% !important;
+    height:100% !important;
+}
+
+/* ===============================
+   UAV Visualization Section
+================================*/
+.environment-section {
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    margin-top:30px;
+    box-shadow: var(--shadow);
+}
+
+#uavEnvironment {
+    position:relative;
+    height:380px;
+    background:#eef2ff;
+    border-radius:10px;
+    border:1px solid var(--border-color);
+    overflow:hidden;
+}
+
+/* UAV + User Nodes */
+.userNode, .uavNode {
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    position:absolute;
+}
+
+.userNode { background:#4361ee; }
+.uavNode { background:#10b981; }
+
+/* Communication Line */
+.line {
+    position:absolute;
+    height:2px;
+    background:rgba(0,0,0,0.7);
+    transform-origin:left;
+}
+
+/* ===============================
+   Footer
+================================*/
+footer {
+    background:#1f2937;
+    padding:40px 0;
+    margin-top:50px;
+    color:white;
+}
+
+.footer-bottom {
+    text-align:center;
+    border-top:1px solid #374151;
+    padding-top:15px;
+    margin-top:20px;
+}
+
+.userNode {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    background: gray;
+    z-index: 3;
+}
+
+.uavNode {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    position: absolute;
+    z-index: 5;
+}
+
+.uavRangeCircle {
+    position: absolute;
+    border: 2px dashed rgba(0,0,0,0.4);
+    border-radius: 50%;
+    background: rgba(0,0,0,0.05);
+    z-index: 1;
+}
+
+.label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    z-index: 10;
+}
+
+.line {
+    position: absolute;
+    height: 2px;
+    transform-origin: left;
+    z-index: 2;
+}
+
+
+.environment-canvas {
+    width: 100%;
+    height: 450px;
+    border: 2px solid #ccc;
+    background: #fdfdfd;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: grab;
+}
+
+/* reset button */
+.resetZoomBtn{
+    margin-bottom:10px;
+    padding:6px 14px;
+    border:none;
+    background:#4361ee;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+.resetZoomBtn:hover{
+    background:#354bd4;
+}
+
+.userNode,.uavNode{
+    width:12px;height:12px;border-radius:50%;position:absolute;
+}
+.line{position:absolute;height:2px;}
+.uavRangeCircle{
+    position:absolute;border:2px dashed rgba(0,0,0,0.3);border-radius:50%;
+}
+.label{
+    position:absolute;font-size:12px;font-weight:bold;color:#111;
+}
+
+
+
+/* ===============================
+   Responsive
+================================*/
+@media (max-width:768px) {
+    .chart-container { width:100% !important; height:280px; }
+    .environment-section { height:auto; }
+}
+
