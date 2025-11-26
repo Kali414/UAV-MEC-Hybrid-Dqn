@@ -5,4 +5,3 @@ matplotlib
 tensorflow
 networkx
 tqdm
-PIL
