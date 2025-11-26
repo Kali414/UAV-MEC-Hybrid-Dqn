@@ -4,3 +4,5 @@ flask
 matplotlib
 tensorflow
 networkx
+tqdm
+PIL
