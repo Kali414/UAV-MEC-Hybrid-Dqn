@@ -36,72 +36,54 @@
                 <div class="form-grid">
 
                     <div class="form-group">
-                        <label for="uavCount">Number of UAVs </label>
-                        <input type="number" id="uavCount" min="1" max="100" value="2" required>
+                        <label>UAVs</label>
+                        <input type="number" id="uavCount" min="1" max="100" value="2">
+                        <small>Total flying nodes</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="userCount">Number of Users </label>
-                        <input type="number" id="userCount" min="1" max="200000" value="20" required>
+                        <label>Users</label>
+                        <input type="number" id="userCount" min="1" max="200000" value="20">
+                        <small>Connected devices</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="bandwidth">Bandwidth (Mbps) </label>
-                        <input type="number" id="bandwidth" min="10" max="2000" value="100" required>
+                        <label>Bandwidth (Mbps)</label>
+                        <input type="number" id="bandwidth" value="100">
+                        <small>Wireless speed</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="taskSize">Task Size (MB) </label>
-                        <input type="number" id="taskSize" min="1" max="500" value="10" required>
+                        <label>Task Size (MB)</label>
+                        <input type="number" id="taskSize" value="10">
+                        <small>Data uploaded per job</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="cycles">Cycles Required (Millions) </label>
-                        <input type="number" id="cycles" min="1" max="1000" value="100" required>
+                        <label>Cycles (M)</label>
+                        <input type="number" id="cycles" value="100">
+                        <small>Processing workload</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="areaSize">Simulation Area Size (m) </label>
-                        <input type="number"
-                            id="areaSize"
-                            min="100"
-                            max="10000000"
-                            value="1000"
-                            placeholder="e.g., 1000"
-                            required>
-                        <small style="color:#6b7280;">
-                            Higher value means a wider environment where UAV travel increases delay.
-                        </small>
+                        <label>Area Size (m)</label>
+                        <input type="number" id="areaSize" value="1000">
+                        <small>Simulation boundary</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="uavRange">UAV Range (m) 📡🛩</label>
-                        <input type="number"
-                               id="uavRange"
-                               min="50"
-                               max="5000"
-                               value="500"
-                               placeholder="e.g., 500"
-                               required>
-                        <small style="color:#6b7280;">
-                            Defines how far users can connect to the UAV.
-                        </small>
+                        <label>UAV Range (m)</label>
+                        <input type="number" id="uavRange" value="500">
+                        <small>Coverage radius</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="simSteps">Simulation Steps </label>
-                        <input type="number"
-                               id="simSteps"
-                               min="50"
-                               max="2000"
-                               value="200"
-                               required>
-                        <small style="color:#6b7280;">
-                            Total time steps to run each algorithm.
-                        </small>
+                        <label>Steps</label>
+                        <input type="number" id="simSteps" value="200">
+                        <small>Simulation length</small>
                     </div>
-
                 </div>
+
 
                 <!-- COMPUTATIONAL POWER -->
                 <h3 style="margin:15px 0 5px;">Computational Power (GHz Input)</h3>

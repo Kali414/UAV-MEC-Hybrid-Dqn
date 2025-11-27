@@ -337,6 +337,28 @@ footer {
     position:absolute;font-size:12px;font-weight:bold;color:#111;
 }
 
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.form-group input {
+    padding: 8px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+.form-group small {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+
 
 
 /* ===============================
